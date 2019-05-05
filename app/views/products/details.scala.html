@@ -1,0 +1,19 @@
+@(productForm: Form[Product])
+@import helper._
+
+
+@main("Product form") {
+	<h1>Product form</h1>
+	@helper.form(action = routes.Products.save()) {
+	<fieldset>
+		<legend>Product (@productForm("name").getValue())</legend>
+		@helper.inputText(productForm("ean"), '_label -> "EAN")
+		@helper.inputText(productForm("name"),'_label -> "Name")
+		@helper.inputText(productForm("description"), '_label -> "Description")
+	</fieldset>
+    <input type="submit" class="btn btn-primary" value="save">
+    
+    @helper.CSRF.formField
+	<a class="btn" href="@routes.Products.list()">Cancel</a>
+	}
+}
